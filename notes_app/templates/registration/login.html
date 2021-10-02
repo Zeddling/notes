@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block content %}
+<div class="horizontal-center">
+    <div class="card card-width-md vertical-center">
+        <div class="columns">
+            <div class="column bg-blue text-white border-radius-md logo-font">
+                <div class="horizontal-center">
+                    <h2 class="vertical-center">Welcome back!</h2>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card-content">
+                    <div class="content">
+                        <form class="" action="." role="form" method="post" id="login_form">
+                            {% csrf_token %}
+                            <p class="text-error">
+                                {{ error }}
+                            </p>
+                            <h2 class="form-signin-heading">Please sign in</h2>
+                            <div class="field">
+                                <div class="control">
+                                    <input type="text" class="input" name="username" id="id_username"
+                                        placeholder="Username" required autofocus>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input type="password" class="input" name="password" id="id_password"
+                                        placeholder="Password" required>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-primary">
+                                    Login
+                                </button>
+                            </div>
+                            <input type="hidden" name="next" value="{{ next }}">
+                            <p>
+                                Not a member?
+                                <a href="{% url 'registration_register' %}">Register</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
