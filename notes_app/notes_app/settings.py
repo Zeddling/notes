@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'notes_app.middleware.LoginRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'notes_app.urls'
@@ -138,3 +139,7 @@ LOGIN_URL = '/accounts/login/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_AUTHENTICATED_REGISTRATION_REDIRECTS=True
+
+# Login Required Redirects configurations
+AUTH_EXEMPT_ROUTES = ('registration_register', 'auth_login', 'registration_complete')
+AUTH_LOGIN_ROUTE = 'auth_login'
