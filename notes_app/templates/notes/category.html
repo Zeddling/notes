@@ -1,0 +1,32 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    <div class="row text-center">
+        <p class="display-3">{{ category.name }}</p>
+        <hr class="width-category">
+    </div>
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+        aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{category.name}}</li>
+        </ol>
+    </nav>
+    <p>
+        <a href="{% url 'add_note' category.slug %}">
+            <i class="far fa-plus-square fa-2x"></i>
+        </a>
+        Add new note
+    </p>
+
+    {% for note in notes %}
+        <p>
+            <a href="{% url 'note' category.slug note.id %}">
+                {{note.title}}
+            </a>
+        </p>
+    {% endfor %}
+{% endblock content %}

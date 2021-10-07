@@ -1,0 +1,28 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Add Category{% endblock title %}
+
+{% block content %}
+    <div class="horizontal-center">
+        <div class="card card-width-sm vertical-center">
+
+            <div class="card-body">
+                <div class="content">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <h2 class="card-title">Add Category</h2>
+                        <div class="mb-3">
+                            <input type="text" name="name" 
+                            maxlength="128" required id="id_name" placeholder="Enter Category Name">
+                           
+                            <button type="submit" class="btn btn-success margin-left-sm">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
