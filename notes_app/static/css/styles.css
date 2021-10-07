@@ -18,6 +18,10 @@ body {
     width: 40%;
 }
 
+.card-width-sm {
+    width: 21rem;
+}
+
 .decor-none a:link {
     text-decoration: none;
 }
@@ -44,8 +48,17 @@ html {
     margin: 20px;
 }
 
+.margin-left-sm {
+    margin-left: 10px;
+}
+
 .margin-top-sm {
     margin-top: 10px;
+}
+
+.move-down-sm {
+    position: relative;
+    top: 20px;
 }
 
 .text-white {
@@ -58,6 +71,11 @@ html {
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+.width-category {
+    margin: auto;
+    width: 70%;
 }
 
 /*

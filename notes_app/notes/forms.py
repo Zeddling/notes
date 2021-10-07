@@ -7,3 +7,11 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = models.Category
         fields = ('name',)
+
+
+class NotesForm(forms.ModelForm):
+    class Meta:
+        model = models.Note
+        fields = ('title', 'description')
+        field_order = ["title", "description"]
+
