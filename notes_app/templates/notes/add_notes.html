@@ -1,0 +1,31 @@
+{% extends 'dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Add Notes{% endblock title %}
+
+{% block content %}
+<div class="horizontal-center">
+    <div class="card card-width-md vertical-center">
+
+        <div class="card-body">
+            <div class="content">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <h2 class="card-title">Add Notes</h2>
+                    <div class="mb-3">
+                        <input type="text" name="title" maxlength="128" required="" id="id_title" placeholder="Enter title">
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="description" cols="40" rows="10" required="" id="id_description" placeholder="Enter notes here"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success margin-left-sm">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

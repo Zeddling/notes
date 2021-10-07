@@ -1,3 +1,4 @@
+from django.template.defaultfilters import title
 from notes import forms, models
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -37,7 +38,7 @@ class CategoryFormTests(WebTest):
         self.client.login(username="test", password="12345678")
     
     def tearDown(self) -> None:
-        self.client.login()
+        self.client.logout()
         self.user.delete()
 
     def test_redirect_on_valid(self):
@@ -68,6 +69,67 @@ class CategoryPageTests(TestCase):
         res = self.client.get(reverse('category', args=["test-case"]))
         self.assertIn(b'Test Case', res.content)
 
+
+class NotesModeTests(TestCase):
+    def setUp(self) -> None:
+        self.user = User.objects.create_user(username="test", password="12345678")
+        self.user.save()
+        self.category = models.Category.objects.create(name="Test Category")
+        self.category.save()
+    
+    def tearDown(self) -> None:
+        self.client.login()
+        self.user.delete()
+        self.category.delete()
+    
+    def test_str(self):
+        note = models.Note(title="Test Note", category=self.category)
+        self.assertTrue(str(note), str(note.id))
+
+
+class NotesFormTests(WebTest):
+    def setUp(self) -> None:
+        self.user = User.objects.create_user(username="test", password="12345678")
+        self.user.save()
+        self.client.login(username="test", password="12345678")
+        self.category = models.Category.objects.create(name="Test Category")
+        self.category.save()
+    
+    def tearDown(self) -> None:
+        self.client.login()
+        self.user.delete()
+    
+    
+
+
+class NotesPageTests(TestCase):
+    def setUp(self) -> None:
+        self.user = User.objects.create_user(username="test", password="12345678")
+        self.user.save()
+        self.client.login(username="test", password="12345678")
+        self.category = models.Category.objects.create(name="Test Category")
+        self.category.save()
+        self.note = models.Note.objects.create(
+            title="Test Note",
+            description="Hello world"
+        )
+        self.note.save()
+    
+    def tearDown(self) -> None:
+        self.client.login()
+        self.user.delete()
+
+    def test_add_notes_form_template_used(self):
+        res = self.client.get(reverse('add_note', args=[self.category.slug]))
+        self.assertTemplateUsed(res, "notes/add_notes.html")
+    
+    def test_notes_page_template_used(self):
+        res = self.client.get(reverse('note', args=[self.category.slug, self.note.id]))
+        self.assertTemplateUsed(res, "notes/note.html")
+    
+    def test_note_displayed(self):
+       res = self.client.get(reverse('note', args=[self.category.slug, self.note.id]))
+       self.assertIn(b'Test Note', res.content)
 
 class IndexPageTests(TestCase):
     def setUp(self) -> None:

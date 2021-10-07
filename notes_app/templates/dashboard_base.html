@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,23 +27,12 @@
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{% url 'index' %}" class="nav-link ">
                                 <i class="fas fa-home"></i>
                                 Home
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-user-circle"></i>
-                                Profile
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-user-circle"></i>
-                                Tasks
-                            </a>
-                        </li>
+                    
                         <li class="nav-item">
                             <a href="{% url 'auth_logout' %}" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
@@ -57,17 +45,17 @@
                     </h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{% url 'add_category' %}" class="nav-link  }}">
                                 <i class="fas fa-plus-circle"></i>
                                 Add category
                             </a>
                         </li>
                         {% for category in categories %}
                             <li class="nav-item">
-                            <a href="{% url 'category' category.slug %}" class="nav-link">
-                                {{category.name}}
-                            </a>
-                        </li>
+                                <a href="{% url 'category' category.slug %}" class="nav-link ">
+                                    {{category.name}}
+                                </a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>

@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "notes",
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'notes_app.middleware.LoginRequiredMiddleware'
+    'notes_app.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'notes_app.urls'
@@ -143,3 +145,8 @@ ACCOUNT_AUTHENTICATED_REGISTRATION_REDIRECTS=True
 # Login Required Redirects configurations
 AUTH_EXEMPT_ROUTES = ('registration_register', 'auth_login', 'registration_complete')
 AUTH_LOGIN_ROUTE = 'auth_login'
+
+# CORS WHITELIST
+CORS_ALLOWED_ORIGINS = [
+    "http://names.drycodes.com"
+]
